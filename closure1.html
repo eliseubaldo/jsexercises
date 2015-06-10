@@ -14,27 +14,21 @@
     </head>
     <body>
         <script>
-        var mywords = ["banana","Macaco","The Mothers of Invention", "LedZeppelin", "The Beatles"];
-
-        var findLongestWord = function (arr){
-            var maior = 0;
-            var palavra ="";
-            var x=arr.length-1;
-            for( i=0; i<x; i++){
-                if(arr[i].length > maior){
-                    maior = arr[i].length;
-                    palavra = arr[i];
-                }
-            
-            }
-            return maior+" ="+palavra;
-
-
+      function multiplier(factor){
+        return function(number){
+           return number * factor;
         }
+      }
 
-        document.write(findLongestWord(mywords));
+      //var twice = multiplier(2);
 
+      console.log(multiplier(2));
 
+      console.log(multiplier(4));
+
+      var armazena = multiplier(5); // armazena contem uma funcao anonima function(number) e o cinco fica na memoria
+
+      console.log(armazena(6)); // ao chamar armazena, a funcao anonima dela eh executada e o valor passado 6 e mutiplicado pelo valor chamado anteriormente na multiplier(5)
       </script>
 
     </body>

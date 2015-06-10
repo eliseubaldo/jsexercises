@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    </head>
+    <body>
+        <p id="loader"></p>
+
+        <button onClick="javascript:giveMeSomeNES(4);">Give me!</button>
+
+        <div id="list"></div>
+
+
+
+
+
+        <script>
+
+        var req = new XMLHttpRequest();
+        var url = "/cats.json";
+        var data = [];
+
+        req.open("GET", url);
+        req.send();
+        req.onreadystatechange = function(){
+            if(req.readyState==4 && req.status ==200 ){
+                data = JSON.parse(req.responseText);
+                
+                x = document.getElementById("loader");
+                x.innerHTML = "data loaded ";
+
+            }
+            else{
+                x = document.getElementById("loader");
+                console.log("loading ... ");          
+            }
+
+        };
+
+        
+
+        function giveMeSomeNES(n){
+            
+            
+            for(i=0; i<n; i++){
+                var rnd = Math.floor(Math.random()*data.length);
+                console.log(rnd)
+                document.getElementById("list").innerHTML += data[rnd].band +" | ";
+            }
+
+            
+
+
+        }
+
+       
+      
+
+      </script>
+
+    </body>
+</html>

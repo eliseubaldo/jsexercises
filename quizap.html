@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Quiz</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+    </head>
+   <body onload=nextQuestion("start");>
+
+    <h3 id="questionTitle"></h3>
+
+    <form  method="get" accept-charset="utf-8">
+    <ul id="questionChoices">
+
+
+   </ul>
+ 
+        
+    </form>
+   
+   <p><button onClick=answer(); id="actionButton">Answer</button></p>
+
+
+
+
+        <script type="text/javascript">
+
+        var questionDB = [{
+            question:"What color is banana ?",
+            choices:["Blue", "Red", "Yellow", "Brown", "Black"],
+            rightAnswer:2
+        },
+        {
+            question:"Who is the intruder ?",
+            choices:["Blue", "Red", "Yellow", "Wasp", "Black"],
+            rightAnswer:3
+        },
+        {
+            question:"Which does not belong to the group ?",
+            choices:["Black Canary", "Ghost Rider", "Daredevil", "SpiderMan", "Nova"],
+            rightAnswer:0
+        },
+        {
+            question:"Who is the best writer ?",
+            choices:["Xavier Nolan", "Michel Tremblay", "Matt Damon", "Peter Parker", "john Bush"],
+            rightAnswer:1
+        },
+        {
+            question:"What is a Black Widow ?",
+            choices:["a ghost", "a rider", "a devil", "a spider", "a Nova"],
+            rightAnswer:3
+        },
+        {
+            question:"What is the best paper type ?",
+            choices:["soft", "cartoon", "mashed", "oak", "trail"],
+            rightAnswer:1
+        },
+        {
+            question:"Where is Canada ?",
+            choices:["South America", "North America", "Earth", "Solar System", "Milk Way"],
+            rightAnswer:4
+        },
+
+        ];
+
+        var qTitleEl = document.getElementById("questionTitle");
+        var qChoicEl = document.getElementById("questionChoices");
+        var i = 0;
+        var currAnswer = undefined;
+        var pontos = 0;
+        
+
+        function nextQuestion(decision){
+            
+            switch(decision){
+                case "start":
+                    update();                    
+                break;
+
+                case "next":
+                    i++;
+                    update();
+                break;
+
+            }
+
+    
+        
+        };
+
+        function update(){
+            if(i>=questionDB.length){
+                showScore();           
+            }else{
+
+                qTitleEl.innerHTML = questionDB[i].question;
+                qChoicEl.innerHTML = null;
+
+                for (var x = 0; x < questionDB[i].choices.length; x++) {
+                    var node = document.createElement("li");
+                    var radio = "<input type='radio' name='qchoice' value='"+x+"'>"+questionDB[i].choices[x];
+                    node.innerHTML=radio;
+                    qChoicEl.appendChild(node);
+                };
+            };
+
+
+        }
+
+        function answer(){
+            var radios = document.forms[0].elements["qchoice"];
+            for (var x = 0; x<radios.length; x++) {
+                if(radios[x].checked){
+                    currAnswer = radios[x].value;
+                    break;
+                }
+            };
+
+            if(currAnswer==questionDB[i].rightAnswer){
+                pontos += 1;
+            }
+            console.log(pontos);
+            nextQuestion("next");
+
+        };
+
+        function showScore(){
+            qTitleEl.innerHTML = null;
+            qChoicEl.innerHTML = null;
+
+            qTitleEl.innerHTML = "End of Quiz. Your Score: <h1>"+pontos+"</h1> of "+(questionDB.length-1)+" Questions";
+            document.getElementById("actionButton").style="display:none;";
+
+        };
+
+        
+        </script>
+
+    </body>
+
+</html>

@@ -13,26 +13,26 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     </head>
     <body>
-        <script>
-        var mywords = ["banana","Macaco","The Mothers of Invention", "LedZeppelin", "The Beatles"];
+      
+      <script type="text/javascript">
 
-        var findLongestWord = function (arr){
-            var maior = 0;
-            var palavra ="";
-            var x=arr.length-1;
-            for( i=0; i<x; i++){
-                if(arr[i].length > maior){
-                    maior = arr[i].length;
-                    palavra = arr[i];
-                }
+        var findLongestWord = function(arr){
             
+            var maiorpalavra = "";
+            var maiornumero = 0;
+            for(x=0; x<arr.length; x++){
+                if(arr[x].length>maiornumero){
+                    maiornumero = arr[x].length;
+                    maiorpalavra = arr[x];
+                }
+
             }
-            return maior+" ="+palavra;
 
-
+            return maiorpalavra +" ="+ maiornumero;
         }
 
-        document.write(findLongestWord(mywords));
+        document.write(findLongestWord(["Macaco","Soldado","Eutrabalhomuitona roca","paus","Os Camaleoes verdes de livros azuis"]));
+
 
 
       </script>

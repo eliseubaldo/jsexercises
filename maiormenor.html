@@ -14,26 +14,23 @@
     </head>
     <body>
         <script>
-        var mywords = ["banana","Macaco","The Mothers of Invention", "LedZeppelin", "The Beatles"];
+       
+       var maiormenor = function(){
+          var maior = Math.floor(Math.random()*100, 0);
+          var menor = Math.floor(Math.random()*100, 0);
+          var intChange;
+          if (maior>menor){
+            return "Maior ="+ maior + " Menor =" + menor;
+          }else{
+            intChange = maior;
+            maior = menor;
+            menor = intChange;
+            return "Maior ="+ maior + " Menor =" + menor;
+          }
+       };
 
-        var findLongestWord = function (arr){
-            var maior = 0;
-            var palavra ="";
-            var x=arr.length-1;
-            for( i=0; i<x; i++){
-                if(arr[i].length > maior){
-                    maior = arr[i].length;
-                    palavra = arr[i];
-                }
-            
-            }
-            return maior+" ="+palavra;
-
-
-        }
-
-        document.write(findLongestWord(mywords));
-
+       document.write(maiormenor());
+       
 
       </script>
 

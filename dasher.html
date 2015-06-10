@@ -14,27 +14,28 @@
     </head>
     <body>
         <script>
-        var mywords = ["banana","Macaco","The Mothers of Invention", "LedZeppelin", "The Beatles"];
+      var dasher = function(nbr){
+          // nbr nao pode ser muito grande senao js armazena como notacao cientifica ex: 2.45+e4
 
-        var findLongestWord = function (arr){
-            var maior = 0;
-            var palavra ="";
-            var x=arr.length-1;
-            for( i=0; i<x; i++){
-                if(arr[i].length > maior){
-                    maior = arr[i].length;
-                    palavra = arr[i];
-                }
-            
+        str = nbr.toString();
+        var arr=str.split("");
+        var newArr = [];
+          for(x=0; x<arr.length; x++){
+            console.log(arr[x]);
+
+            if(arr[x]%2 == 0 && arr[x+1]%2==0){
+                
+                newArr.push(arr[x]+"-");
+                 
+            }else{
+              newArr.push(arr[x]);
             }
-            return maior+" ="+palavra;
 
-
-        }
-
-        document.write(findLongestWord(mywords));
-
-
+          }
+          return newArr.join("");
+      } 
+      
+       document.write("2784930583624="+dasher(2784930583624));
       </script>
 
     </body>

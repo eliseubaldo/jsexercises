@@ -14,26 +14,18 @@
     </head>
     <body>
         <script>
-        var mywords = ["banana","Macaco","The Mothers of Invention", "LedZeppelin", "The Beatles"];
+      var caseme = function(text){
+          theString = text.split("");
 
-        var findLongestWord = function (arr){
-            var maior = 0;
-            var palavra ="";
-            var x=arr.length-1;
-            for( i=0; i<x; i++){
-                if(arr[i].length > maior){
-                    maior = arr[i].length;
-                    palavra = arr[i];
-                }
+          for (var i = 0; i < theString.length; i++) {
             
-            }
-            return maior+" ="+palavra;
+            theString[i]
+          };
+          console.log(theString);
 
+      }
 
-        }
-
-        document.write(findLongestWord(mywords));
-
+      document.write(caseme("Banana"));
 
       </script>
 

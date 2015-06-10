@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    </head>
+    <body>
+        <script>
+       
+       var evaluateExpression = function (n,n2,op){
+          n = Number(n); n2 = Number(n2);
+          
+          if(!Number(n) || !Number(n2)){
+            return "Please enter only numbers";
+          }
+          switch (op){
+            case "+":
+              return n+n2;
+            break;
+            case "-":
+              return n-n2;
+            break;
+            case "/":
+              return n/n2;
+            break;
+            case "*":
+             return n*n2;
+            break;
+            default:
+              return "Not a valid operator";
+            }
+
+       }
+       var n1 = prompt("enter n1");
+       var n2 = prompt("enter n2");
+       var opera = prompt("enter operator");
+       document.write(evaluateExpression(n1,n2,opera));
+      </script>
+
+    </body>
+</html>

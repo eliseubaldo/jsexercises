@@ -14,25 +14,29 @@
     </head>
     <body>
         <script>
-        var mywords = ["banana","Macaco","The Mothers of Invention", "LedZeppelin", "The Beatles"];
+       
+       var sum = function(arr){
+            var total = 0;
+            for (var x=0; x < arr.length; x++) {
+                total += arr[x];
+            };
 
-        var findLongestWord = function (arr){
-            var maior = 0;
-            var palavra ="";
-            var x=arr.length-1;
-            for( i=0; i<x; i++){
-                if(arr[i].length > maior){
-                    maior = arr[i].length;
-                    palavra = arr[i];
-                }
-            
-            }
-            return maior+" ="+palavra;
+            return total;
+       };
 
+       var multiply = function(arr){
+            var total = arr[0];
+            for (var x=1; x < arr.length; x++) {
+                total *=arr[x];
+                console.log(arr[x]);
+                
+            };
+            return total;
 
-        }
+       }
 
-        document.write(findLongestWord(mywords));
+       document.write("Total Soma de [5,78,9,34,9,11]"+ sum([5,78,9,34,9,11])+"<br>");
+       document.write("Total multiplacao de [5,78,9,34,9,11]"+ multiply([5,78,9,34,9,11])+"<br>");
 
 
       </script>

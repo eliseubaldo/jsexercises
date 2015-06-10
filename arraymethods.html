@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    </head>
+    <body>
+      
+    <script type="text/javascript">
+
+    var myString = "The song remains the same";
+    var array1 = ["Coda","Achilles last Stand", "In Rock", "Physical Graphiti"];
+    var array2 = ["of wolf and men", "the last samurai", "behind the walls of sleep", "Ghost of navigator"];
+    var array3 = ["Um", "dois","tres","quatro","cinco","seis","sete","oito","nove","dez"];
+
+
+    var x = array1.toString();
+    document.write("Array1 para string: "+ x);
+
+    var concatenada = array1.concat(myString);
+    console.log("Array1 concatenada: "+ concatenada);
+
+    var parastring = array1.join("|");
+    console.log("Virou string: "+parastring);
+
+    var lastitem = array2.pop();
+    document.write("<p>Removido o Ultimo item da array2="+lastitem+"</p>");      
+
+    array2.push("Brave new world", "The trooper");
+    document.write("<p>adicionado 2 items no fim da array2="+array2+"</p>");
+
+    array2.reverse();
+    document.write("<p>reverse da array2="+array2+"</p>");
+
+    var marcha = array2.shift();
+    document.write("<p>Removido o primeiro item da array2="+marcha+"</p>");
+
+    var cortada = array3.slice(4,6);
+    document.write("<p>array3="+array3+"</p>");
+    document.write("<p>cortada da array3 (4,6)= "+cortada+"</p>");
+
+    array3.sort();
+    document.write("<p>sort array3="+array3+"</p>");
+
+    array3.splice(2,5,[array1]);
+    document.write("<p>splice array3="+array3+"</p>");
+
+    array3.unshift("Eliseu");
+    document.write("<p>insere no inicio da array3="+array3+"</p>");      
+
+
+
+
+
+
+
+
+
+    </script>
+
+    </body>
+</html>
