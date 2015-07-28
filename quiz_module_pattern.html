@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <style type="text/css">
+        #loader{position:absolute; right:20px; padding:20px; width:100px; background: white;}
+        #questionChoices{list-style-type: none;}
+        #questionChoices li{
+            float:left; margin: 5px 10px;
+        }
+        .answers{
+            clear:both;
+            margin:10px;
+            width:90%;
+        }
+        .tQuestion{color:orange;}
+
+        </style>
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    </head>
+    <body>
+        <body>
+
+            <div id="loader"></div>
+
+        <div class="answers">
+            <h3 id="questionTitle"></h3>
+
+            <form  method="get" accept-charset="utf-8">
+            
+            <ul id="questionChoices">
+            </ul>
+
+            </form>            
+        </div>
+        <p class="answers"><button onClick=nesQuiz.answer(); id="actionButton">Answer</button></p>
+
+
+
+
+
+        <script>
+        var nesQuiz = (function(){
+
+        // Globals
+
+        var qTitleEl = document.getElementById("questionTitle");
+        var qChoicEl = document.getElementById("questionChoices");
+        var points = 0;
+        var qTotal = 10;
+        var currQuestion = 1;
+        var rndPick = 0;
+
+        var req = new XMLHttpRequest();
+        var url = "/nesgames.json";
+        var data = [];
+        var manufacturers = [];
+
+        // Private Load ajax data
+        var loadQuiz = function(){
+            req.open("GET", url);
+            req.send();
+            req.onreadystatechange = function(){
+                if(req.readyState==4 && req.status ==200 ){
+                    data = JSON.parse(req.responseText);
+                    
+                    x = document.getElementById("loader");
+                    x.innerHTML = "Quiz Loaded, total Questions: "+data.length;
+                    
+                    initializeQuiz();
+
+                }
+                else{
+                    x = document.getElementById("loader");
+                    x.innerHTML = "loading Quiz ... ";          
+                }
+            }; 
+        };
+
+        // Private initialize
+        var initializeQuiz = function(){
+
+            // get all unique manufacturers
+            for(i=0; i<data.length; i++){
+                manufacturers.push(data[i].manufacturer);
+            }
+
+            // clean duplicated manufacturers
+
+            var unique = manufacturers.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
+
+
+            // show all manufacturers
+            for (var x = 0; x < unique.length; x++) {
+
+                    var node = document.createElement("li");
+                    var radio = "<input type='radio' name='qchoice' value='"+unique[x]+"'>"+unique[x];
+                    node.innerHTML=radio;
+                    qChoicEl.appendChild(node);
+            };
+
+            nextQuestion();
+
+        };
+
+        // Private Nextquestion
+        var nextQuestion = function (){
+
+            if(currQuestion > qTotal){
+                    endQuiz();
+            }else{
+
+            rndPick = Math.floor(Math.random()*data.length);
+
+            qTitleEl.innerHTML = "Who is the manufacturer of <span class='tQuestion'>" + data[rndPick].title + " </span> ?";
+            }
+
+        };
+
+        // Private Answer
+        var answer = function (){
+            var radios = document.forms[0].elements["qchoice"];
+            for (var x = 0; x<radios.length; x++) {
+                if(radios[x].checked){
+                    currAnswer = radios[x].value;
+                    break;
+                }
+            };
+
+            if(currAnswer==data[rndPick].manufacturer){
+                points += 1;
+            }
+            console.log(points);
+            currQuestion ++;
+            nextQuestion();
+        };
+
+        //Private endQuiz
+        var endQuiz = function(){
+                qChoicEl.innerHTML = "<h4>Quiz Ended</h4> <p>Total Score:"+points+" of "+qTotal+"</p>";
+        };
+
+
+
+
+        // Publics
+        return{
+            initialize: function(){
+                loadQuiz();
+            },
+            answer: function(){
+                answer();
+            }
+        };
+
+
+
+        })();
+
+        
+
+        nesQuiz.initialize();
+       
+      
+
+      </script>
+
+    </body>
+</html>
